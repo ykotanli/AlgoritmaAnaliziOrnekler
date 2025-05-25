@@ -252,8 +252,24 @@ int KnapsackDpTest(int[] weights, int[] prices, int capacity)
 {
     int n = prices.Length;
     int[,] dp = new int[n + 1, capacity + 1];
-    
-    for(int i = 0;i<=)
+
+    for (int i = 1; i <= n; i++)
+    {
+        for (int w = 0; w <= capacity; w++)
+        {
+            if (weights[i - 1] <= w)
+            {
+                dp[i, w] = Math.Max(dp[i - 1, w], dp[i - 1, w - weights[i - 1]] + prices[i - 1]);
+            }
+            else
+            {
+                dp[i, w] = dp[i - 1, w];
+            }
+        }
+    }
+
+    return dp[n, capacity];
+
 }
 
 
@@ -544,6 +560,166 @@ int KnapsackBruteForce(int[] weights, int[] prices, int capacity)
     }
 
     return maxPrice;
+}
+
+
+//------------------------------------------------BENCE ÇIKACAKLAR----------------------------------------------------------------
+
+
+
+//Longest Common String --->   Hoca brute force unu vermişti dp sini sorabilir.
+int LCS(string s1, string s2)
+{
+    int n = s1.Length, m = s2.Length;
+    int[,] dp = new int[n + 1, m + 1];
+
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= m; j++)
+        {
+            if (s1[i - 1] == s2[j - 1])
+                dp[i, j] = dp[i - 1, j - 1] + 1;
+            else
+                dp[i, j] = Math.Max(dp[i - 1, j], dp[i, j - 1]);
+        }
+    }
+
+    return dp[n, m];
+}
+
+// CoinChange in kaç farklı şekilde olanı çıkar bence
+int CountCoinCombinations(int[] coins, int amount)
+{
+    int[] dp = new int[amount + 1];
+    dp[0] = 1;
+
+    foreach (int coin in coins)
+    {
+        for (int i = coin; i <= amount; i++)
+        {
+            dp[i] += dp[i - coin];
+        }
+    }
+    return dp[amount];
+}
+
+
+
+
+// Varyasyonunu vermiş hoca bunu sorabilir.
+int ClimbStairs(int n)
+{
+    if (n <= 2) return n;
+
+    int[] dp = new int[n + 1];
+    dp[1] = 1;
+    dp[2] = 2;
+
+    for (int i = 3; i <= n; i++)
+        dp[i] = dp[i - 1] + dp[i - 2];
+
+    return dp[n];
+}
+
+
+
+// MinCostClimbingStairs e çok benziyo sorma ihtimali var.
+int HouseRobber(int[] nums)
+{
+    if (nums.Length == 0) return 0;
+    if (nums.Length == 1) return nums[0];
+
+    int[] dp = new int[nums.Length];
+    dp[0] = nums[0];
+    dp[1] = Math.Max(nums[0], nums[1]);
+
+    for (int i = 2; i < nums.Length; i++)
+        dp[i] = Math.Max(dp[i - 1], dp[i - 2] + nums[i]);
+
+    return dp[nums.Length - 1];
+}
+
+
+
+// Hoca kesirsizini vermiş bunu yazmamızı isteyebilir Greedy ile optimum bulunuyo digerinde bulunmuyo.
+int KnapsackGreedyWithFractionTahmin(int[] weights, int[] prices, int capacity)
+{
+    int n = weights.Length;
+    for (int i = 0; i < n - 1; i++)
+    {
+
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            double ratio1 = (double)prices[j] / weights[j];
+            double ratio2 = (double) prices[j + 1] / weights[j + 1];
+            if (ratio2 > ratio1)
+            {
+                Swap2(weights,prices,j,j+1);
+            }
+        }
+    }
+
+    double totalProfit = 0;
+    double remainingCapacity = capacity;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (weights[i] <= remainingCapacity)
+        {
+            totalProfit += prices[i];
+            remainingCapacity -= weights[i];
+        }
+        else // KESİRLİ ALABİLDİĞİMİZ VERSİYON
+        {
+            double fraction = remainingCapacity / weights[i]; //kalan kapasiteyi eşyaya oranlıyoruz
+            totalProfit = prices[i] * fraction; // ağırlığın oranında değeri toplama ekliyoruz.
+            break;
+        }
+    }
+
+    return (int)totalProfit;
+}
+
+
+
+// Vizede bunun analizini yaptirmisti belki yazdırır.
+int TribonacciDpTahmin(int n)
+{
+    if (n == 0) return 0;
+    if (n == 1 || n == 2) return 1;
+    int[] dp = new int[n+1];
+    dp[0] = 0;
+    dp[1] = 1;
+    dp[2] = 1;
+    for (int i = 3; i <= n; i++)
+    {
+        dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
+    }
+
+    return dp[n];
+
+}
+
+
+// Çıkma ihtimali olabilen bir algoritma diğerlerine göre daha düşük ihtimal ---> ardışık olmayan elemanlar altkümesi
+// targeti verebiliyo mu onu kontrol ediyo.
+bool SubsetSum(int[] nums, int target)
+{
+    bool[,] dp = new bool[nums.Length + 1, target + 1];
+    for (int i = 0; i <= nums.Length; i++) dp[i, 0] = true;
+
+    for (int i = 1; i <= nums.Length; i++)
+    {
+        for (int j = 1; j <= target; j++)
+        {
+            if (nums[i - 1] > j)
+                dp[i, j] = dp[i - 1, j];
+            else
+                dp[i, j] = dp[i - 1, j] || dp[i - 1, j - nums[i - 1]];
+        }
+    }
+
+    return dp[nums.Length, target];
 }
 
 
