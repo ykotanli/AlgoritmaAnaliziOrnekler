@@ -1,0 +1,15 @@
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\bin\Debug\net6.0\AlgoritmaAnaliziFinal.exe
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\bin\Debug\net6.0\AlgoritmaAnaliziFinal.deps.json
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\bin\Debug\net6.0\AlgoritmaAnaliziFinal.runtimeconfig.json
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\bin\Debug\net6.0\AlgoritmaAnaliziFinal.dll
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\bin\Debug\net6.0\AlgoritmaAnaliziFinal.pdb
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\obj\Debug\net6.0\AlgoritmaAnaliziFinal.csproj.AssemblyReference.cache
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\obj\Debug\net6.0\AlgoritmaAnaliziFinal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\obj\Debug\net6.0\AlgoritmaAnaliziFinal.AssemblyInfoInputs.cache
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\obj\Debug\net6.0\AlgoritmaAnaliziFinal.AssemblyInfo.cs
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\obj\Debug\net6.0\AlgoritmaAnaliziFinal.csproj.CoreCompileInputs.cache
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\obj\Debug\net6.0\AlgoritmaAnaliziFinal.dll
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\obj\Debug\net6.0\refint\AlgoritmaAnaliziFinal.dll
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\obj\Debug\net6.0\AlgoritmaAnaliziFinal.pdb
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\obj\Debug\net6.0\AlgoritmaAnaliziFinal.genruntimeconfig.cache
+C:\Users\Harun\RiderProjects\AlgoritmaAnaliziFinal\AlgoritmaAnaliziFinal\obj\Debug\net6.0\ref\AlgoritmaAnaliziFinal.dll
