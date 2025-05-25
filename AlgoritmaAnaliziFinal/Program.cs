@@ -1,7 +1,7 @@
 ﻿
 //Count Sort Radix Sort Örnek
 
-int[] CountingSortTest(int[] array)
+int[] CountingSortWithNegatives(int[] array)
 {
     int min = array.Min();
     int max = array.Max();
@@ -21,7 +21,7 @@ int[] CountingSortTest(int[] array)
 }
 
 
-int[] CountingSortByDigitsTest(int[] array, int exp)
+int[] CountingSortByDigits(int[] array, int exp)
 {
     int[] count = new int[10];
     for (int i = 0; i < array.Length; i++)
@@ -44,7 +44,7 @@ int[] CountingSortByDigitsTest(int[] array, int exp)
 int[] RadixSortTest(int[] array)
 {
     for (int exp = 1; array.Max() / exp > 0; exp++)
-        array = CountingSortByDigitsTest(array, exp);
+        array = CountingSortByDigits(array, exp);
     return array;
 }
 
@@ -67,7 +67,7 @@ void Swap(int[] weights, int[] prices, int i, int j) // Ne olur ne olmaz sort ku
     prices[i] = prices[j];
     prices[j] = tempPrice;
 }
-int KnapsackGreedyTest(int[] weights, int[] prices, int capacity)
+int KnapsackGreedy(int[] weights, int[] prices, int capacity)
 {
     int n = weights.Length;
     for (int i = 0; i < n-1; i++)
@@ -94,7 +94,7 @@ int KnapsackGreedyTest(int[] weights, int[] prices, int capacity)
     return totalPrice;
 }
 
-int ActivitySelectionGreedyTest(int[] startTimes, int[] endTimes)
+int ActivitySelectionGreedy(int[] startTimes, int[] endTimes)
 {
     int n = startTimes.Length;
     for (int i = 0; i < n - 1; i++)
@@ -122,7 +122,7 @@ int ActivitySelectionGreedyTest(int[] startTimes, int[] endTimes)
     return activityCount;
 }
 
-int JobSchedulingGreedyTest(int[] profits, int[] deadLines)
+int JobSchedulingGreedy(int[] profits, int[] deadLines)
 {
     int n = profits.Length;
     for (int i = 0; i < n - 1; i++)
@@ -183,7 +183,7 @@ int MaxLengthofSubstringBruteForceLength(string s1, string s2)
 }
 
 
-int KnapsackBruteForceTest(int[] weights, int[] prices,int capacity)
+int KnapsackBruteForce(int[] weights, int[] prices,int capacity)
 {
     int maxValue = 0;
     int n = weights.Length;
@@ -248,7 +248,7 @@ int KnapsackDp(int[] weights, int[] values, int capacity)
 }
 
 
-int KnapsackDpTest(int[] weights, int[] prices, int capacity)
+int KnapsackDp(int[] weights, int[] prices, int capacity)
 {
     int n = prices.Length;
     int[,] dp = new int[n + 1, capacity + 1];
@@ -275,7 +275,7 @@ int KnapsackDpTest(int[] weights, int[] prices, int capacity)
 
 
 
-int CoinChangeDpTest(int[] coins, int target)
+int CoinChangeDp(int[] coins, int target)
 {
     int[] dp = new int[target+1];
     Array.Fill(dp,int.MaxValue);
@@ -331,72 +331,7 @@ int CatalanDpTest(int n)
 }
 
 
-//-----------------------------------------
-// Ek Dp Ornekler
 
-int ClimbingStairsVariation(int n)
-{
-    if (n <= 2) return n;
-    int[] dp = new int[n+1];
-    dp[1] = 1;
-    dp[2] = 2;
-    for (int i = 2; i <= n; i++)
-    {
-        dp[i] = dp[i - 1] + dp[i - 2];
-    }
-
-    return dp[n];
-}
-
-int TribonacciDp(int n)
-{
-    if (n == 0) return 0;
-    if (n == 1 || n == 2) return 1;
-    int[] dp = new int[n+1];
-    dp[0] = 0;
-    dp[1] = 1;
-    dp[2] = 1;
-    for (int i = 3; i <= n; i++)
-    {
-        dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
-    }
-
-    return dp[n];
-
-}
-
-int CoinChangeDpVariation(int[] coins, int target)
-{
-    int[] dp = new int[target+1];
-    dp[1] = 1;
-    dp[2] = 2;
-    foreach (var coin in coins)
-    {
-        for (int i = coin; i <= target; i++)
-        {
-            dp[i] += dp[i - coin];
-        }
-    }
-
-    return dp[target];
-
-}
-
-int RobDp(int[] nums)
-{
-    ;
-    if (nums.Length == 0) return 0;
-    if (nums.Length == 1) return nums[0];
-    int[] dp = new int[nums.Length];
-    dp[0] = nums[0];
-    dp[1] = Math.Max(nums[0],nums[1]);
-    for (int i = 2; i < nums.Length; i++)
-    {
-        dp[i] = Math.Max(dp[i - 1], dp[i - 2] + nums[i]);
-    }
-
-    return dp[nums.Length - 1];
-}
 
 //----------------------------------------------------------------------------------
 // Dp-Brute force donusumler belki sorar hoca
@@ -428,139 +363,6 @@ int TribonacciDpToBruteForce(int n)
 
 
 
-int[] CountingSort(int[] array)
-{
-    int max = array.Max();
-    int min = array.Min();
-    int n = array.Length;
-    int[] count = new int[max-min+1];
-
-    for (int i = 0; i < n; i++)
-        count[array[i] - min]++;
-    for (int i = 1; i < count.Length; i++)
-        count[i] += count[i - 1];
-
-    int[] output = new int[n];
-    for (int i = n - 1; i >= 0; i--)
-    {
-        count[array[i] - min]--;
-        output[count[array[i] - min]] = array[i];
-    }
-
-    return output;
-}
-
-void Swap2(int[] array1, int[] array2, int i, int j)
-{
-    int temp = array1[i];
-    array1[i] = array1[j];
-    array1[j] = temp;
-
-    temp = array2[i];
-    array2[i] = array2[j];
-    array2[j] = temp;
-
-}
-
-int KnapsackGreedyWithFraction(int[] weights, int[] prices, int capacity)
-{
-    int n = weights.Length;
-    for (int i = 0; i < n - 1; i++)
-    {
-
-        for (int j = 0; j < n - i - 1; j++)
-        {
-            double ratio1 = (double)prices[j] / weights[j];
-            double ratio2 = (double) prices[j + 1] / weights[j + 1];
-            if (ratio2 > ratio1)
-            {
-                Swap2(weights,prices,j,j+1);
-            }
-        }
-    }
-
-    double totalProfit = 0;
-    double remainingCapacity = capacity;
-
-    for (int i = 0; i < n; i++)
-    {
-        if (weights[i] <= remainingCapacity)
-        {
-            totalProfit += prices[i];
-            remainingCapacity -= weights[i];
-        }
-        else // KESİRLİ ALABİLDİĞİMİZ VERSİYON
-        {
-            double fraction = remainingCapacity / weights[i]; //kalan kapasiteyi eşyaya oranlıyoruz
-            totalProfit = prices[i] * fraction; // ağırlığın oranında değeri toplama ekliyoruz.
-            break;
-        }
-    }
-
-    return (int)totalProfit;
-}
-
-
-
-int ActivitySelection(int[] startTimes, int[] endTimes)
-{
-    int n = startTimes.Length;
-    for (int i = 0; i < n - 1; i++)
-    {
-        for (int j = 0; j < n - i - 1; j++)
-        {
-            if (endTimes[j + 1] < endTimes[j])
-            {
-                Swap2(startTimes,endTimes,j,j+1);
-            }
-        }
-    }
-
-    int total = 1;
-    int lastEnd = endTimes[0];
-
-    for (int i = 1; i < n; i++)
-    {
-        if (startTimes[i] >= lastEnd)
-        {
-            total++;
-            lastEnd = endTimes[i];
-        }
-    }
-
-    return total;
-}
-
-
-
-
-
-int KnapsackBruteForce(int[] weights, int[] prices, int capacity)
-{
-    int n = prices.Length;
-    int maxPrice = 0;
-    for (int i = 0; i < (1 << n); i++)
-    {
-        int totalWeight = 0;
-        int totalPrice = 0;
-        for (int j = 0; j < n; j++)
-        {
-            if ((i & (1 << j)) != 0)
-            {
-                totalWeight += weights[j];
-                totalPrice += prices[j];
-            }
-            
-        }
-
-        if (totalWeight <= capacity && totalPrice > maxPrice)
-        {
-            maxPrice = totalPrice;
-        }
-    }
-
-    return maxPrice;
-}
 
 
 //------------------------------------------------BENCE ÇIKACAKLAR----------------------------------------------------------------
@@ -642,7 +444,7 @@ int HouseRobber(int[] nums)
 
 
 // Hoca kesirsizini vermiş bunu yazmamızı isteyebilir Greedy ile optimum bulunuyo digerinde bulunmuyo.
-int KnapsackGreedyWithFractionTahmin(int[] weights, int[] prices, int capacity)
+int KnapsackGreedyWithFraction(int[] weights, int[] prices, int capacity)
 {
     int n = weights.Length;
     for (int i = 0; i < n - 1; i++)
@@ -654,7 +456,7 @@ int KnapsackGreedyWithFractionTahmin(int[] weights, int[] prices, int capacity)
             double ratio2 = (double) prices[j + 1] / weights[j + 1];
             if (ratio2 > ratio1)
             {
-                Swap2(weights,prices,j,j+1);
+                Swap(weights,prices,j,j+1);
             }
         }
     }
@@ -683,7 +485,7 @@ int KnapsackGreedyWithFractionTahmin(int[] weights, int[] prices, int capacity)
 
 
 // Vizede bunun analizini yaptirmisti belki yazdırır.
-int TribonacciDpTahmin(int n)
+int TribonacciDp(int n)
 {
     if (n == 0) return 0;
     if (n == 1 || n == 2) return 1;
@@ -721,6 +523,17 @@ bool SubsetSum(int[] nums, int target)
 
     return dp[nums.Length, target];
 }
+
+
+
+
+
+
+//--------------------------------------------Donusumler------------------------------------------------------------------------
+
+
+
+
 
 
 
